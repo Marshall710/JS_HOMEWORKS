@@ -1,13 +1,14 @@
 'use strict'
 
-//hw_6.1
-let input1 = prompt('input1 text');
-let input2 = prompt('input2 text');
-let input3 = prompt('input3 text');
+//Task 1
+const name = 'John';
+const admin = name;
+alert(admin);
 
-console.log(input3 + ' ' + input2 + ' ' + input1);
+//Task 2
+const planet = 'Earth';
+const userName = 'Kris';
 
-//hw_6.2
-let num = 12345;
-
-console.log(num.toString().split('').join(' '));
+//Task 3
+const numStr = '10' + 10;
+console.log(typeof(numStr));
