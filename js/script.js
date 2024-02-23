@@ -10,4 +10,4 @@ console.log(input3 + ' ' + input2 + ' ' + input1);
 //hw_6.2
 let num = 12345;
 
-console.log(num.toString().split('').join(' '))
+console.log(num.toString().split('').join(' '));
