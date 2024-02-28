@@ -1,1 +1,4 @@
-//###
+'use strict'
+
+const userAge = prompt('How old are you ?');
+alert(`You age ${parseInt(userAge)}. After 10 years you will be ${(parseInt(userAge, 10)) + 10}!`);
