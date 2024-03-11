@@ -1,5 +1,6 @@
 'use strict'
 
+
 const number = prompt('Input number');
 let age = 'років';
 
