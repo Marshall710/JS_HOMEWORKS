@@ -11,5 +11,5 @@ if (!isNaN(+number)) {
     }
     alert(`${number} ${age}`);
 } else {
-    alert('Input only number')
+    alert('Input only number');
 }
