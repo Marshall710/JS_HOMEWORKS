@@ -1,7 +1,7 @@
 'use strict'
 
 //Task1
-let x = 10, y = 7;
+const x = 10, y = 7;
 console.log(x > y ? 'x більше за y' : 'x не быльший за y');
 
 const intNumber = prompt('Input int number');
