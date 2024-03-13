@@ -1,7 +1,6 @@
 'use strict'
 
 let intNumber = +prompt('Input number');
-// let intNumber = 60;
 if (isNaN(intNumber) || intNumber < 1) {
     console.log('NaN');
 } else {
