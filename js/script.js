@@ -9,5 +9,4 @@ const powNumber = function (number, pow = 1) {
         return Math.pow(number, pow);
     }
 }
-const result = powNumber(number, pow);
-alert(result);
+alert(powNumber(number, pow));
