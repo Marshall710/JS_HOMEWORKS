@@ -3,7 +3,6 @@
 const arr = [1, 2, 3, -1, -2, -3];
 const positiveArr = function (arr) {
     const newArr = []
-
     if(arr.length === 0) {
         return 'array is empty!'
     }
@@ -16,11 +15,6 @@ const positiveArr = function (arr) {
         }
     }
 
-    if (newArr.length > 0) {
-        return newArr
-    } else {
-        return null;
-    }
+    return (newArr.length > 0) ? newArr : null;
 }
-
 console.log(positiveArr(arr));
