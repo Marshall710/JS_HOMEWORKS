@@ -14,7 +14,7 @@ console.log(arr1.push(...[4,5,6]))
 console.log(arr1.unshift(...[4,5,6]))
 // Task 5
 const arrStr = ['js','css', 'jq'];
-document.write(arrStr[0]);
+document.write(arrStr[0] + ' ');
 // Task 6
 document.write(arrStr[2]);
 // Task 7
