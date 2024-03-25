@@ -39,7 +39,20 @@ function arrayFill(value, length) {
 }
 console.log(arrayFill('x', 5));
 //Task 8
-
+const limitedCounter = function (arr) {
+    let sum = 0;
+    let counter = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+        counter++;
+        if (sum > 10) {
+            break;
+        }
+    }
+    return counter;
+}
+const array = [1,2,5,8,2];
+console.log(limitedCounter(array));
 //Task 9
 const reversArr = function(arr) {
     let reversArr = [];
@@ -52,9 +65,27 @@ const num = [1, 2, 3, 4, 5];
 console.log(reversArr(num));
 //Task 10
 const sumArr = function (arr) {
+    let totalSum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            totalSum += arr[i][j];
+        }
+    }
+    return totalSum;
+}
+const array2 =  [[1, 2, 3], [4, 5], [6]];
+console.log(sumArr(array2));
+//Task 11
+const sumNumArr = function (arr) {
     let sum = 0;
     for (let i = 0; i < arr.length; i++) {
-
+        for (let j = 0; j < arr[i].length; j++) {
+            for (let k = 0; k < arr[j].length; k++) {
+                sum += arr[i][j][k]
+            }
+        }
     }
+    return sum;
 }
-//Task 11
+const array3 =  [[[1, 2], [3, 4]], [[5, 6], [7, 8]]];
+console.log(sumNumArr(array3))
