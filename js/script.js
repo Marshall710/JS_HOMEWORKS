@@ -60,7 +60,7 @@ let users = [
 const phone = [];
 let balanceTotal = 0;
 users.forEach(function (user) {
-    let balance = parseFloat(user.balance.replace(/\$/g, '').replace(/,/g,''));
+    const balance = parseFloat(user.balance.replace('$', '').replace(',',''));
     balanceTotal += balance;
     if(balance > 2000) {
         phone.push(user.phone);
@@ -69,4 +69,3 @@ users.forEach(function (user) {
 
 console.log(phone);
 console.log(balanceTotal);
-
