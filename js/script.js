@@ -19,3 +19,10 @@ const pow = (num, degree) => {
 console.log(pow(10, 10));
 
 // Task 3
+const sum = (a, b) => {
+  if (b === 0) {
+    return a;
+  }
+  return sum(++a, --b);
+};
+console.log(sum(3, 10));
