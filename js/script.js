@@ -1,13 +1,15 @@
-const sum = () => {
-  let number = 0;
+(function () {
+  const sum = () => {
+    let number = 0;
 
-  const result = (value) => number += value;
+    const result = (value) => (number += value);
 
-  return result;
-};
+    return result;
+  };
 
-const sumFunc = sum();
+  const sumFunc = sum();
 
-console.log(sumFunc(3));
-console.log(sumFunc(5));
-console.log(sumFunc(20));
+  console.log(sumFunc(3));
+  console.log(sumFunc(5));
+  console.log(sumFunc(20));
+})();
