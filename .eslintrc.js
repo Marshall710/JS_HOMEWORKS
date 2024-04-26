@@ -19,5 +19,8 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  rules: {},
+  rules: {
+    'no-restricted-syntax': 'off',
+    'no-console': ['error', { allow: ['log'] }],
+  },
 };
