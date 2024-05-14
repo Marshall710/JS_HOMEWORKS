@@ -1,20 +1,20 @@
 (function () {
   const generateList = function (array) {
-    const ul = document.createElement('ul');
+    const ulEl = document.createElement('ul');
 
     array.forEach((item) => {
-      const li = document.createElement('li');
+      const liEl = document.createElement('li');
 
       if (Array.isArray(item)) {
-        li.appendChild(generateList(item));
+        liEl.appendChild(generateList(item));
       } else {
-        li.textContent = item;
+        liEl.textContent = item;
       }
 
-      ul.appendChild(li);
+      ulEl.appendChild(liEl);
     });
 
-    return ul;
+    return ulEl;
   };
 
   const array = [1, 2, [1.1, 1.2, 1.3], 3];
