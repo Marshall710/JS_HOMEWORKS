@@ -1,22 +1,21 @@
-Function.prototype.customBind = function (context) {
-  const fn = this;
-  const args = Array.prototype.slice.call(arguments, 1);
-
-  return function () {
-    const combinedArgs = args.concat(Array.prototype.slice.call(arguments));
-
-    return fn.apply(context, combinedArgs);
+(function () {
+  const obj = {
+    name: 'John',
+    age: '96',
   };
-};
 
-// Приклад використання
-const obj = {
-  name: "John",
-};
+  const customCall = function (ctx = this, arg) {
+    return arg + ctx;
+  };
 
-function greet() {
-  console.log(`Hello, ${this.name}`);
-}
+  console.log(customCall(obj.name, 'name: '));
 
-const boundGreet = greet.customBind(obj);
-boundGreet();
+  const customBind = function (ctx = this, arg) {
+    return function () {
+      return customCall(ctx, arg);
+    };
+  };
+
+  const example = customBind(obj.age, ' age ');
+  console.log(example());
+}());
