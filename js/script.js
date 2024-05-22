@@ -1,22 +1,21 @@
-Function.prototype.myApply = function (context, argsArray) {
-  if (typeof context === "undefined" || context === null) {
-    context = window;
-  }
+(function () {
+  Function.prototype.myApply = function (ctx, argsArray) {
+    if (!Array.isArray(argsArray)) throw new TypeError('Second argument must be array');
+    ctx.binding = this;
+    const result = ctx.binding(...argsArray);
+    delete ctx.binding;
+    return result;
+  };
 
-  const uniqueKey = `___myAplly${Math.floor(Math.random() * 1000000)}`;
-  context[uniqueKey] = this;
+  const user = {
+    name: 'Oleksandr',
+    age: 28,
+  };
 
-  const result = context[uniqueKey](...argsArray);
+  const printUserInfo = function (prefix, suffix) {
+    return `${prefix} ${this.name}, Age: ${this.age} ${suffix}`;
+  };
 
-  delete context[uniqueKey];
-
-  return result;
-};
-
-const object = function (name) {
-  return `Hello ${name}!`;
-};
-
-const person = { name: "John" };
-const objectName = object.myApply(person, ["Jane"]);
-console.log(objectName);
+  const result = printUserInfo.myApply(user, ['Hello', '!']);
+  console.log(result);
+})();
