@@ -1,7 +1,7 @@
 (function () {
   const FORM_ITEMS = 'form-items';
   const form = document.querySelector('#todoForm');
-  const taskContainer = document.getElementById('taskContainer');
+  const taskContainer = document.querySelector('#taskContainer');
   let currentId = 1;
 
   const getData = () => {
@@ -35,6 +35,9 @@
 
     saveItem(data);
 
+    const layout = createItemLayout(data);
+    taskContainer.prepend(layout);
+
     event.target.reset();
   };
 
@@ -47,7 +50,7 @@
                             <div class="taskHeading">#${data.id} | ${data.title}</div>
                             <div class="taskDescription">${data.description}</div>
                             <hr>
-                            <button class="btn btn-danger btn-sm" data-remove-btn>Favorites</button>
+                            <button class="btn btn-danger btn-sm" data-add-btn>Favorites</button>
                             <button class="btn btn-danger btn-sm" data-remove-btn>Remove from Favorites</button>
                         </div>`;
     return wrapper;
@@ -55,7 +58,7 @@
 
   const loadTaskContainer = () => {
     const todoItem = getData();
-
+    currentId = todoItem[todoItem.length - 1].id + 1;
     todoItem.forEach((item) => {
       const layout = createItemLayout(item);
       taskContainer.prepend(layout);
