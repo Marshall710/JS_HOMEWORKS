@@ -1,70 +1,35 @@
 (function () {
-  const FORM_ITEMS = 'form-items';
-  const form = document.querySelector('#todoForm');
-  const taskContainer = document.querySelector('#taskContainer');
-  let currentId = 1;
+  const buttons = document.querySelectorAll('[data-action]');
 
-  const getData = () => {
-    const data = JSON.parse(localStorage.getItem(FORM_ITEMS));
-    return data || [];
+  const saveButtonState = (button) => {
+    localStorage.setItem(button.id, button.disabled ? 'disabled' : 'enabled');
   };
 
-  const saveItem = (data) => {
-    const dataToSave = structuredClone(data);
-    const savedData = getData();
-    dataToSave.id = currentId;
-    currentId++;
-
-    savedData.push(dataToSave);
-    localStorage.setItem(FORM_ITEMS, JSON.stringify(savedData));
+  const loadButtonStates = () => {
+    for (const button of buttons) {
+      const state = localStorage.getItem(button.id);
+      if (state === 'disabled') {
+        button.style.display = 'none';
+      } else {
+        button.style.display = 'block';
+      }
+    }
   };
 
-  const createTaskItem = (event) => {
-    event.preventDefault();
+  const btnHandler = (event) => {
     event.stopPropagation();
+    event.preventDefault();
 
-    const data = {
-      title: null,
-      description: null,
-    };
-
-    const inputs = event.target.querySelectorAll('input, textarea');
-    inputs.forEach((input) => {
-      data[input.name] = input.value;
-    });
-
-    saveItem(data);
-
-    const layout = createItemLayout(data);
-    taskContainer.prepend(layout);
-
-    event.target.reset();
+    const clickedButton = event.target.closest('button[data-action]');
+    if (clickedButton) {
+      clickedButton.disabled = !clickedButton.disabled;
+      saveButtonState(clickedButton);
+    }
   };
 
-  const createItemLayout = (data) => {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'col-4';
-    wrapper.setAttribute('data-id', data.id);
+  document.addEventListener('DOMContentLoaded', loadButtonStates);
 
-    wrapper.innerHTML = `<div class="taskWrapper">
-                            <div class="taskHeading">#${data.id} | ${data.title}</div>
-                            <div class="taskDescription">${data.description}</div>
-                            <hr>
-                            <button class="btn btn-danger btn-sm" data-add-btn>Favorites</button>
-                            <button class="btn btn-danger btn-sm" data-remove-btn>Remove from Favorites</button>
-                        </div>`;
-    return wrapper;
-  };
-
-  const loadTaskContainer = () => {
-    const todoItem = getData();
-    currentId = todoItem[todoItem.length - 1].id + 1;
-    todoItem.forEach((item) => {
-      const layout = createItemLayout(item);
-      taskContainer.prepend(layout);
-    });
-  };
-
-  document.addEventListener('DOMContentLoaded', loadTaskContainer);
-  form.addEventListener('submit', createTaskItem);
+  for (const button of buttons) {
+    button.addEventListener('click', btnHandler);
+  }
 }());
